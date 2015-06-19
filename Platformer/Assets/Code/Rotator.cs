@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class NewBehaviourScript : MonoBehaviour {
+public class Rotator : MonoBehaviour {
 
 	public float rotationsPerMinute;
 	void Update()
 	{
-		transform.Rotate(0,6.0*rotationsPerMinute*Time.deltaTime,0);
+		transform.Rotate(0,0,10*rotationsPerMinute*Time.deltaTime);
+	}
 }
