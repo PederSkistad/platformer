@@ -8,7 +8,7 @@ public class Player_Movement_v2 : MonoBehaviour
 	public float speed;
 	public float jumpPower;
 	public float fallSpeed;
-	public Text testing;
+	//public Text testing;
 
 	private Rigidbody2D rb;
 	private bool grounded;
@@ -24,13 +24,14 @@ public class Player_Movement_v2 : MonoBehaviour
 	// Update is called once per frame
 	void FixedUpdate ()
 	{
-		if (! grounded) {
-			quasiGravitation ();
-		} else {
+		quasiGravitation ();
+
+		if (grounded) {
 			Jump ();
 		}
+
 		Movement ();
-		testing.text = grounded.ToString ();
+		//testing.text = grounded.ToString ();
 	}
 
 	void OnCollisionEnter2D(Collision2D obj){
@@ -49,9 +50,9 @@ public class Player_Movement_v2 : MonoBehaviour
 		if (Input.GetButtonDown ("Jump")) {
 			float vx = rb.velocity.x;
 			//float vy = rb.position.y;
-			rb.AddForce (new Vector3 (vx, jumpPower, 0) * Time.deltaTime);
+			rb.AddForce (new Vector3 (vx, jumpPower*100, 0) * Time.deltaTime);
 			grounded = false;
-		}
+		}	
 	}
 
 	void Movement() {
