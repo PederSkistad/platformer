@@ -35,8 +35,9 @@ public class StickToPlatform : MonoBehaviour {
 		Transform t = other.transform; // transform of character
 
 		// we calculate the yOffset from the character height and center
-		float yOffset = other.gameObject.GetComponent<Collider2D>().bounds.extents.y / 2f - rb2d.centerOfMass.y + verticalOffset;
-	
+
+		float yOffset = other.gameObject.GetComponent<Collider2D>().bounds.extents.y / (2f - rb2d.position.y + verticalOffset);
+
 		Data data = new Data(rb2d, t, yOffset);
 		
 		// add it to table of characters on this platform
@@ -54,6 +55,7 @@ public class StickToPlatform : MonoBehaviour {
 	}
 	
 	void FixedUpdate () {
+
 		Vector3 curPos = transform.position;
 		float y = curPos.y; // current y pos of platform
 		
@@ -71,7 +73,7 @@ public class StickToPlatform : MonoBehaviour {
 		foreach (DictionaryEntry d in onPlatform) {
 			Data data = (Data) d.Value; // get the data
 			float charYVelocity = data.rb2d.velocity.y;
-			
+
 			// check if char seems to be jumping
 			if ((charYVelocity <= 0f) || (charYVelocity <= yVelocity)) {
 				// no, lets do our trick!
