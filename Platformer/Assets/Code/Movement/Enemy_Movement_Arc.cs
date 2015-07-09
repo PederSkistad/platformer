@@ -46,6 +46,7 @@ public class Enemy_Movement_Arc : MonoBehaviour {
 		grounded = false;
 
 	}
+
 	void moveLeft() {
 
 		transform.Translate (new Vector3(-0.1f, 0, 0) * speed * Time.deltaTime);
